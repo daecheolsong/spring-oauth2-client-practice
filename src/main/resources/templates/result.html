@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+    <p th:text="|결과 : ${result}|"></p>
+<!--    TODO : client_id 수정 -->
+    <a href="https://kauth.kakao.com/oauth/logout?client_id=${CLIENT_ID}}&logout_redirect_uri=http://localhost:8080/auth/kakao/logout">로그아웃</a>
+</body>
+</html>
