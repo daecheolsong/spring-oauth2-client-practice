@@ -14,4 +14,5 @@ public class LogoutController {
     public String logout() {
         return "logout";
     }
+
 }

@@ -7,6 +7,6 @@
 <body>
     <p th:text="|결과 : ${result}|"></p>
 <!--    TODO : client_id 수정 -->
-    <a href="https://kauth.kakao.com/oauth/logout?client_id=${CLIENT_ID}}&logout_redirect_uri=http://localhost:8080/auth/kakao/logout">로그아웃</a>
+    <a th:href="@{https://kauth.kakao.com/oauth/logout(client_id=${@environment.getProperty('spring.security.oauth2.client.registration.kakao.client-id')},logout_redirect_uri='http://localhost:8080/auth/kakao/logout')}">로그아웃</a>
 </body>
 </html>
