@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.security.web.session.DisableEncodeUrlFilter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +36,8 @@ public class SecurityConfig {
 
         return http.
                 csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests( authorizeRequestsCustomizer -> {
-                    authorizeRequestsCustomizer.antMatchers("/auth/login", "/image/**", "/js/**", "/auth/logout").permitAll();
+                .authorizeRequests(authorizeRequestsCustomizer -> {
+                    authorizeRequestsCustomizer.antMatchers("/auth/login", "/image/**", "/js/**", "/auth/logout/result").permitAll();
                     authorizeRequestsCustomizer.anyRequest().authenticated();
                 })
                 .oauth2Login(httpSecurityOAuth2LoginConfigurer -> {
@@ -46,9 +46,9 @@ public class SecurityConfig {
                     httpSecurityOAuth2LoginConfigurer.successHandler(authenticationSuccessHandler());
                 })
                 .logout(httpSecurityLogoutConfigurer -> {
-                    httpSecurityLogoutConfigurer.logoutUrl("/auth/logout");
+                    httpSecurityLogoutConfigurer.logoutUrl("/auth/kakao/logout");
                     // no redirect after logout success
-                    httpSecurityLogoutConfigurer.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+                    httpSecurityLogoutConfigurer.logoutSuccessUrl("/auth/logout/result");
                     httpSecurityLogoutConfigurer.clearAuthentication(true);
                     httpSecurityLogoutConfigurer.invalidateHttpSession(true);
                 })
