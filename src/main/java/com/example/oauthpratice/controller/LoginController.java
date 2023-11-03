@@ -1,11 +1,12 @@
 package com.example.oauthpratice.controller;
 
-import com.example.oauthpratice.response.KakaoProfileResponse;
+import com.example.oauthpratice.dto.OAuth2UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
 
 
 /**
@@ -22,8 +23,8 @@ public class LoginController {
 
 
     @GetMapping("/auth/result")
-    public String result(@RequestAttribute("profileResponse") KakaoProfileResponse kakaoProfileResponse, Model model) {
-        model.addAttribute("result", kakaoProfileResponse);
+    public String result(@SessionAttribute("OAuth2UserInfo") OAuth2UserInfo attributes, Model model) {
+        model.addAttribute("result", attributes);
         return "result";
     }
 }
