@@ -46,8 +46,7 @@ public class SecurityConfig {
                     httpSecurityOAuth2LoginConfigurer.successHandler(authenticationSuccessHandler());
                 })
                 .logout(httpSecurityLogoutConfigurer -> {
-                    httpSecurityLogoutConfigurer.logoutUrl("/auth/kakao/logout");
-                    // no redirect after logout success
+                    httpSecurityLogoutConfigurer.logoutUrl("/auth/logout");
                     httpSecurityLogoutConfigurer.logoutSuccessUrl("/auth/logout/result");
                     httpSecurityLogoutConfigurer.clearAuthentication(true);
                     httpSecurityLogoutConfigurer.invalidateHttpSession(true);
