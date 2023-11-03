@@ -5,8 +5,10 @@
     <title>Result</title>
 </head>
 <body>
-    <p th:text="|결과 : ${result}|"></p>
+<p th:text="|이름 : ${result.getName()}|"></p>
+<p th:text="|이메일 : ${result.getEmail()}|"></p>
+<img th:src="@{${result.getPicture()}}"/>
 <!--    TODO : client_id 수정 -->
-    <a th:href="@{https://kauth.kakao.com/oauth/logout(client_id=${@environment.getProperty('spring.security.oauth2.client.registration.kakao.client-id')},logout_redirect_uri='http://localhost:8080/auth/logout')}">로그아웃</a>
+    <a th:href="@{/auth/logout}">로그아웃</a>
 </body>
 </html>
