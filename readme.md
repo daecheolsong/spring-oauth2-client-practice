@@ -1,4 +1,4 @@
-#Spring Oauth2 Client Practice
+# Spring Oauth2 Client Practice
 
 - 로그인 페이지
 
