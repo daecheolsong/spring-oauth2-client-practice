@@ -5,9 +5,9 @@
     <title>Result</title>
 </head>
 <body>
-<p th:text="|이름 : ${result.getName()}|"></p>
-<p th:text="|이메일 : ${result.getEmail()}|"></p>
-<img th:src="@{${result.getPicture()}}"/>
+<p th:text="|이름 : ${user.getName()}|"></p>
+<p th:text="|이메일 : ${user.getEmail()}|"></p>
+<img th:src="@{${user.getPicture()}}" th:width="100" th:height="100"/>
 <!--    TODO : client_id 수정 -->
     <a th:href="@{/auth/logout}">로그아웃</a>
 </body>

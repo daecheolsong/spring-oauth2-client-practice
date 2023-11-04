@@ -1,6 +1,6 @@
 package com.example.oauthpratice.controller;
 
-import com.example.oauthpratice.dto.OAuth2UserInfo;
+import com.example.oauthpratice.dto.SessionUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +22,9 @@ public class LoginController {
     }
 
 
-    @GetMapping("/auth/result")
-    public String result(@SessionAttribute("OAuth2UserInfo") OAuth2UserInfo attributes, Model model) {
-        model.addAttribute("result", attributes);
-        return "result";
+    @GetMapping("/")
+    public String result(@SessionAttribute("user") SessionUser sessionUser, Model model) {
+        model.addAttribute("user", sessionUser);
+        return "index";
     }
 }

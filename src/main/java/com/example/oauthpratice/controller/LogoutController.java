@@ -12,6 +12,6 @@ public class LogoutController {
 
     @GetMapping("/auth/logout/result")
     public String logoutRedirect() {
-        return "logout";
+        return "logout_result";
     }
 }

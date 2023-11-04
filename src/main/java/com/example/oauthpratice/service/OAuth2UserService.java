@@ -1,6 +1,7 @@
 package com.example.oauthpratice.service;
 
 import com.example.oauthpratice.dto.OAuth2UserInfo;
+import com.example.oauthpratice.dto.SessionUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -34,7 +35,10 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
 
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession(false);
-        session.setAttribute("OAuth2UserInfo", attributes);
+
+        SessionUser sessionUser = new SessionUser(attributes.getName(), attributes.getEmail(), attributes.getPicture());
+        session.setAttribute("user", sessionUser);
+
         return new DefaultOAuth2User(authorities, attributes.getAttributes(), attributes.getNameAttributeKey());
     }
 

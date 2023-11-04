@@ -17,9 +17,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -78,8 +76,7 @@ public class SecurityConfig {
             response.setStatus(HttpServletResponse.SC_OK);
             response.setContentType(MediaType.TEXT_HTML_VALUE);
             response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/auth/result");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("/");
 
         });
     }
